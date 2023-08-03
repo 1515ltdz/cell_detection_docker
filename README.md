@@ -1,2 +1,3 @@
 # cell_detection_docker
-Algorithms designed for the competition OCELOT 2023: Cell Detection from Cell-Tissue Interaction.
+Algorithms designed for the challenge OCELOT 2023: Cell Detection from Cell-Tissue Interaction.
+Cell detection algorithm based on yolov7.
