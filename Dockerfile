@@ -1,18 +1,17 @@
-FROM ocelot23algo_backup
-# nvcr.io/nvidia/pytorch:21.08-py3
+FROM nvcr.io/nvidia/pytorch:21.08-py3
 
-# RUN groupadd -r user && useradd -m --no-log-init -r -g user user
+RUN groupadd -r user && useradd -m --no-log-init -r -g user user
 
-# RUN mkdir -p /opt/app /input /output \
-#     && chown user:user /opt/app /input /output
+RUN mkdir -p /opt/app /input /output \
+    && chown user:user /opt/app /input /output
 
-# USER user
-# WORKDIR /opt/app
+USER user
+WORKDIR /opt/app
 
-# ENV PATH="/home/user/.local/bin:${PATH}"
-# ENV PYTHONPATH "${PYTHONPATH}:/opt/app/"
+ENV PATH="/home/user/.local/bin:${PATH}"
+ENV PYTHONPATH "${PYTHONPATH}:/opt/app/"
 
-# RUN python -m pip install --user -U pip && python -m pip install --user pip-tools
+RUN python -m pip install --user -U pip && python -m pip install --user pip-tools
 
 COPY ./ /opt/app/
 
@@ -24,6 +23,5 @@ RUN pip install numpy==1.22.4
 # RUN apt-get update && apt-get install ffmpeg libsm6 libxext6  -y
 
 COPY --chown=user:user process.py /opt/app/
-Copy ./ocelot23algo-output /output
 
 ENTRYPOINT [ "python", "-m", "process" ]
